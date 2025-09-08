@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import log from "../../LoggingMiddleware";
+import log from "logging-middleware";
 
 export default function URLShortener() {
   const [inputs, setInputs] = useState([{ url: "", code: "", validity: "" }]);
   const [results, setResults] = useState([]);
+
 
   function handleChange(i, field, value) {
     const newInputs = [...inputs];
@@ -19,35 +20,40 @@ export default function URLShortener() {
     try {
       const stored = JSON.parse(localStorage.getItem("urls") || "[]");
       const newResults = [];
-
       for (let i = 0; i < inputs.length; i++) {
-        const { url, code, validity } = inputs[i];
-        if (!url.startsWith("http")) {
-          log("error", "component", "Invalid URL format");
+        let { url, code, validity } = inputs[i];
+        if (!url) {
           continue;
         }
-
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+          url = `https://${url}`;
+        }
         let shortcode = code || Math.random().toString(36).substring(2, 7);
         if (stored.find(u => u.code === shortcode)) {
           log("warn", "component", "Shortcode collision");
           continue;
         }
-
         const minutes = validity ? parseInt(validity) : 30;
         const createdAt = new Date();
         const expiresAt = new Date(createdAt.getTime() + minutes * 60000);
-
         const record = { url, code: shortcode, createdAt, expiresAt, clicks: [] };
         stored.push(record);
         newResults.push(record);
-
         log("info", "component", `Shortened URL ${url} to ${shortcode}`);
       }
-
       localStorage.setItem("urls", JSON.stringify(stored));
       setResults(newResults);
     } catch (e) {
       log("fatal", "component", "Unexpected error in shorten()");
+    }
+  }
+
+  function loadAllUrls() {
+    try {
+      const stored = JSON.parse(localStorage.getItem("urls") || "[]");
+      setResults(stored);
+    } catch (e) {
+      console.error("Failed to load URLs from local storage.");
     }
   }
 
@@ -75,6 +81,7 @@ export default function URLShortener() {
       ))}
       <button onClick={addField}>+ Add another</button>
       <button onClick={shorten}>Shorten</button>
+      <button onClick={loadAllUrls}>Load All URLs</button>
 
       <h3>Results</h3>
       {results.map((r, i) => (

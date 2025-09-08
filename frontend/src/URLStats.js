@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import log from "../../LoggingMiddleware";
+import log from "logging-middleware";
 
 export default function URLStats() {
   const [urls, setUrls] = useState([]);
