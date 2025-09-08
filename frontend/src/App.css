@@ -1,0 +1,151 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f6fa;
+  color: #333;
+}
+
+a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #222;
+}
+
+h3 {
+  margin-top: 30px;
+  font-size: 22px;
+  color: #555;
+}
+
+input[type="text"], input[type="number"] {
+  width: calc(33% - 12px);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #1e90ff;
+  outline: none;
+}
+
+button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1e90ff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0d6efd;
+}
+
+.results, .stats {
+  margin-top: 20px;
+}
+
+.results div, .stats div {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.results p, .stats p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.stats p b {
+  color: #222;
+}
+
+.redirect-msg {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.click-time {
+  font-size: 13px;
+  color: #555;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  flex: 1;
+  min-width: 150px;
+}
+
+.input-group button {
+  flex: none;
+}
